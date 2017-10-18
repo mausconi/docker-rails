@@ -57,6 +57,8 @@ gem 'friendly_id'
 gem 'stringex'
 gem 'trix'
 gem 'rollbar'
+gem 'react_on_rails'
+gem 'webpacker'
 
 # Image uploads
 gem 'shrine'
@@ -101,3 +103,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'mini_racer', platforms: :ruby
