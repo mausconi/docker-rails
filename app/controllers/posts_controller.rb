@@ -9,9 +9,7 @@ class PostsController < ApplicationController
     end
     authorize @posts
 
-    respond_with @posts do |format|
-      format.js { render 'kaminari/infinite-scrolling', locals: { objects: @posts } }
-    end
+    respond_with @posts
   end
 
   def autocomplete

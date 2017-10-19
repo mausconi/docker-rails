@@ -6,9 +6,6 @@ class @Init
     new FormValidator()
     new Upload()
 
-    # Lists
-    new InfiniteScrolling()
-
     # General
     new TimeFormatter()
     new TooltipEnabler()

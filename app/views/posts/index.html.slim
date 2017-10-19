@@ -28,14 +28,4 @@
   #post-count
     = pluralize @posts.total_count, 'Post'
 
-- if @posts.present?
-  table.table.table-hover
-    thead.thead-inverse
-      tr
-        th Content
-        th.text-right.text-nowrap.d-none.d-md-table-cell Last Update
-    tbody#js-infinite-scrolling
-      - cache [ @posts, search_string ] do
-        = render @posts
-
-= render 'kaminari/paging', objects: @posts
+= react_component('PostListing', props: { url: posts_path(format: :json)})
