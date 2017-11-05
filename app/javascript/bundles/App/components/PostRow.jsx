@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import sanitizeHtml from 'sanitize-html';
-import Moment from 'react-moment';
+import TimeAgo from 'react-timeago';
 
 export default class PostRow extends React.Component {
   static propTypes = {
@@ -35,9 +35,7 @@ export default class PostRow extends React.Component {
         <td className="js-row-link">{this.state.formatted_content}</td>
         <td className="js-row-link text-right d-none d-md-table-cell text-nowrap">
           <span className="badge badge-secondary">
-            <Moment fromNow>
-              {this.props.post.updated_at}
-            </Moment>
+            <TimeAgo date={this.props.post.updated_at} />
           </span>
         </td>
       </tr>

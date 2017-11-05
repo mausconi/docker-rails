@@ -7,7 +7,6 @@ class @Init
     new Upload()
 
     # General
-    new TimeFormatter()
     new TooltipEnabler()
     new Autocomplete()
 
