@@ -29,9 +29,14 @@ export default class PostRow extends React.Component {
     );
   }
 
+  handleRowClick = (e) => {
+    const href = e.currentTarget.getAttribute('data-href');
+    Turbolinks.visit(href);
+  }
+
   render() {
     return (
-      <tr data-href={this.props.post.url}>
+      <tr onClick={this.handleRowClick} data-href={this.props.post.url}>
         <td className="js-row-link">{this.state.formatted_content}</td>
         <td className="js-row-link text-right d-none d-md-table-cell text-nowrap">
           <span className="badge badge-secondary">
