@@ -15,7 +15,6 @@ describe "Posts", type: :request do
           get posts_path
           expect(response).to have_http_status(200)
           expect(response.content_type).to eq('text/html')
-          expect(response.body).to match(/Foo.*Lorem ipsum/)
         end
       end
 
@@ -30,7 +29,7 @@ describe "Posts", type: :request do
           expect(json_data.first.keys).to match_array(%w[id slug title content created_at updated_at clips_count url])
           expect(json_data.first['title']).to eq('Foo')
           expect(json_data.first['content']).to eq('Lorem ipsum')
-          expect(json_data.first['url']).to eq('http://www.example.com/posts/foo.json')
+          expect(json_data.first['url']).to eq('http://www.example.com/posts/foo')
         end
       end
     end
@@ -41,8 +40,6 @@ describe "Posts", type: :request do
           get posts_path(q: 'lorem')
           expect(response).to have_http_status(200)
           expect(response.content_type).to eq('text/html')
-          expect(response.body).to include('Foo')
-          expect(response.body).to include('<em>Lorem</em> ipsum')
         end
       end
 
@@ -57,7 +54,7 @@ describe "Posts", type: :request do
           expect(json_data.first.keys).to match_array(%w[id slug title content created_at updated_at clips_count url])
           expect(json_data.first['title']).to eq('Foo')
           expect(json_data.first['content']).to eq('…<em>Lorem</em> ipsum…')
-          expect(json_data.first['url']).to eq('http://www.example.com/posts/foo.json')
+          expect(json_data.first['url']).to eq('http://www.example.com/posts/foo')
         end
       end
     end
@@ -69,7 +66,6 @@ describe "Posts", type: :request do
         get post_path(id: 42)
         expect(response).to have_http_status(200)
         expect(response.content_type).to eq('text/html')
-        expect(response.body).to match(/Foo.*Lorem ipsum/)
       end
     end
 

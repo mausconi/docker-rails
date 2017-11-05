@@ -13,5 +13,5 @@ json.array! @posts do |post|
     json.content post.content_as_plaintext.truncate(300)
   end
 
-  json.url post_url(post, format: :json)
+  json.url post_url(post)
 end
