@@ -4,8 +4,6 @@ require 'sidekiq/cron/web'
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  mount ImageUploader.upload_endpoint(:cache) => '/upload'
-  mount Shrine.presign_endpoint(:cache) => '/presign'
   mount Ahoy::Engine => '/ahoy', as: :my_ahoy
 
   constraints Clearance::Constraints::SignedIn.new(&:is_admin?) do
@@ -36,5 +34,7 @@ Rails.application.routes.draw do
   root to: 'posts#index'
 
   # Catch all to avoid FATAL error logging
-  match '*path', via: :all, to: 'errors#error_404'
+  match '*path', via: :all, to: 'errors#error_404', constraints: lambda { |req|
+    req.path.exclude? 'rails/active_storage'
+  }
 end

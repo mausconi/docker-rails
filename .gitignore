@@ -33,6 +33,3 @@
 
 # Ignore simplecov result
 /coverage/*
-
-# Ignore Shrine uploads
-/public/uploads

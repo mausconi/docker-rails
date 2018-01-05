@@ -121,7 +121,6 @@ GEM
     dotenv-rails (2.2.1)
       dotenv (= 2.2.1)
       railties (>= 3.2, < 5.2)
-    down (4.2.0)
     elasticsearch (6.0.0)
       elasticsearch-api (= 6.0.0)
       elasticsearch-transport (= 6.0.0)
@@ -163,7 +162,6 @@ GEM
     htmlentities (4.3.4)
     i18n (0.9.1)
       concurrent-ruby (~> 1.0)
-    image_processing (0.4.5)
     jbuilder (2.7.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
@@ -321,10 +319,6 @@ GEM
     selenium-webdriver (3.8.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.0)
-    shrine (2.8.0)
-      down (~> 4.1)
-    shrine-memory (0.3.0)
-      shrine (~> 2.2)
     sidekiq (5.0.5)
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
@@ -414,12 +408,11 @@ DEPENDENCIES
   font-awesome-sass
   foreman
   friendly_id
-  image_processing
   jbuilder (~> 2.5)
   kaminari
   launchy
   letter_opener
-  mini_magick
+  mini_magick (~> 4.8)
   paper_trail
   pdf-reader
   pg (~> 0.18)
@@ -436,8 +429,6 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   searchkick
   selenium-webdriver
-  shrine
-  shrine-memory
   sidekiq
   sidekiq-cron
   simple_form

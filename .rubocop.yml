@@ -53,6 +53,7 @@ Metrics/MethodLength:
   Exclude:
     - db/migrate/20170707122626_create_visits.rb
     - db/migrate/20170708054041_install_blazer.rb
+    - db/migrate/20180105110116_create_active_storage_tables.rb
 
 
 ### Style

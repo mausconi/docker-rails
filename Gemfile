@@ -23,7 +23,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 
 # Use ActiveStorage variant
-# gem 'mini_magick', '~> 4.8'
+gem 'mini_magick', '~> 4.8'
+gem 'aws-sdk-s3'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -58,12 +59,6 @@ gem 'stringex'
 gem 'trix'
 gem 'rollbar'
 
-# Image uploads
-gem 'shrine'
-gem 'image_processing'
-gem 'mini_magick'
-gem 'aws-sdk-s3'
-
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -96,7 +91,6 @@ group :test do
   gem 'simplecov', require: false
   gem 'pdf-reader'
   gem 'email_spec'
-  gem 'shrine-memory'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

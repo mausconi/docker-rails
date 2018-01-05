@@ -8,7 +8,7 @@
       li.nav-item
         a.nav-link.active data-toggle="tab" href="#text-tab" role="tab"  Text
       li.nav-item
-        a.nav-link data-toggle="tab" href="#clips-tab" role="tab"  Images
+        a.nav-link data-toggle="tab" href="#images-tab" role="tab"  Images
       li.nav-item
         a.nav-link data-toggle="tab" href="#copyright-tab" role="tab"  Copyright
 
@@ -17,24 +17,15 @@
         = f.input :content, as: :hidden
         trix-editor input="post_content" placeholder="Content" id="trix-post-content"
 
-      #clips-tab.tab-pane role="tabpanel"
+      #images-tab.tab-pane role="tabpanel"
         .fileinput-button.mt-3
-          input multiple="multiple" type="file"
-          .message Drop files here or click to upload
+          = f.file_field :images, direct_upload: true, multiple: true
 
           .row.no-gutters#js-images
-            - post.clips.each do |clip|
+            - post.images.each do |image|
               .col-2
                 .mb-2.mr-2
-                  = image_tag clip.image_url(:thumbnail), class: 'img-thumbnail square'
-
-        script#template-upload type='text/x-tmpl'
-          .col-2
-            .mb-2.mr-2
-              img
-              input type="hidden" name="post[clips_attributes][][image]"
-              .progress
-                .progress-bar role="progressbar" style="height: 2px"
+                  = image_tag image.variant(resize: "400x400"), class: 'img-thumbnail square'
 
       #copyright-tab.tab-pane role="tabpanel"
         = f.input :copyright, as: :hidden

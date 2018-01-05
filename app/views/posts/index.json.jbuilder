@@ -1,5 +1,5 @@
 json.array! @posts do |post|
-  json.extract! post, :id, :slug, :created_at, :updated_at, :clips_count
+  json.extract! post, :id, :slug, :created_at, :updated_at
 
   if search_string && post.search_highlights[:title]
     json.title post.search_highlights[:title]
@@ -14,4 +14,6 @@ json.array! @posts do |post|
   end
 
   json.url post_url(post, format: :json)
+
+  json.images_count post.images.count
 end

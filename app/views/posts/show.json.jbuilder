@@ -1,24 +1,12 @@
 json.extract! @post, *@post.attributes.keys
 
-json.clips @post.clips do |clip|
-  json.id clip.id
-  json.filename clip.image[:original].original_filename
+json.images @post.images do |image|
+  json.id image.id
+  json.filename image.filename
+  json.size image.byte_size
+  json.mime_type image.content_type
 
-  json.original do
-    json.url clip.image_url(:original, expires_in: 1.day.to_i)
-    json.size clip.image[:original].size
-    json.mime_type clip.image[:original].mime_type
-  end
-
-  json.large do
-    json.url clip.image_url(:large, expires_in: 1.day.to_i)
-    json.size clip.image[:large].size
-    json.mime_type clip.image[:large].mime_type
-  end
-
-  json.thumbnail do
-    json.url clip.image_url(:thumbnail, expires_in: 1.day.to_i)
-    json.size clip.image[:thumbnail].size
-    json.mime_type clip.image[:thumbnail].mime_type
-  end
+  json.url url_for(image)
+  json.large_url url_for(image.variant(resize: "1200x1200"))
+  json.thumbnail_url url_for(image.variant(resize: "400x400"))
 end

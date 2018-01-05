@@ -17,13 +17,13 @@ article data-cable-post-id=post.id
     p.badge.badge-secondary
       = time_tag(post.updated_at)
 
-  - if post.clips.present?
+  - if post.images.present?
     .row.no-gutters
-      - post.clips.each do |clip|
+      - post.images.each do |image|
         .col-2
           .mb-2.mr-2
-            = link_to clip.image_url(:large, expires_in: 1.day.to_i), data: { toggle: 'lightbox', gallery: 'gallery' }
-              = image_tag clip.image_url(:thumbnail, expires_in: 1.day.to_i), class: 'img-thumbnail square'
+            = link_to url_for(image), data: { toggle: 'lightbox', gallery: 'gallery' }
+              = image_tag image.variant(resize: '400x400'), class: 'img-thumbnail square'
     hr
 
   == post.content

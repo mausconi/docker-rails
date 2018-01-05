@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 describe "Posts", type: :request do
-  let!(:post) { create(:post, id: 42, title: 'Foo', content: 'Lorem ipsum') }
-  let!(:clip) { create(:clip, id: 123, post: post) }
+  let(:file) { fixture_file_upload('spec/fixtures/example.jpg', 'image/jpeg') }
+  let!(:post) { create(:post, id: 42, title: 'Foo', content: 'Lorem ipsum', images: [ file ]) }
 
   before do
     Post.reindex
@@ -27,7 +27,7 @@ describe "Posts", type: :request do
 
           json_data = JSON.parse(response.body)
           expect(json_data.length).to eq(1)
-          expect(json_data.first.keys).to match_array(%w[id slug title content created_at updated_at clips_count url])
+          expect(json_data.first.keys).to match_array(%w[id slug title content created_at updated_at images_count url])
           expect(json_data.first['title']).to eq('Foo')
           expect(json_data.first['content']).to eq('Lorem ipsum')
           expect(json_data.first['url']).to eq('http://www.example.com/posts/foo.json')
@@ -54,7 +54,7 @@ describe "Posts", type: :request do
 
           json_data = JSON.parse(response.body)
           expect(json_data.length).to eq(1)
-          expect(json_data.first.keys).to match_array(%w[id slug title content created_at updated_at clips_count url])
+          expect(json_data.first.keys).to match_array(%w[id slug title content created_at updated_at images_count url])
           expect(json_data.first['title']).to eq('Foo')
           expect(json_data.first['content']).to eq('…<em>Lorem</em> ipsum…')
           expect(json_data.first['url']).to eq('http://www.example.com/posts/foo.json')
@@ -80,12 +80,12 @@ describe "Posts", type: :request do
         expect(response.content_type).to eq('application/json')
 
         json_data = JSON.parse(response.body)
-        expect(json_data.keys).to match_array(%w[id slug title content copyright created_at updated_at clips_count clips])
+        expect(json_data.keys).to match_array(%w[id slug title content copyright created_at updated_at images])
         expect(json_data['title']).to eq('Foo')
         expect(json_data['content']).to eq('Lorem ipsum')
 
-        expect(json_data['clips'].size).to eq(1)
-        expect(json_data['clips'].first.keys).to match_array(%w[id filename original large thumbnail])
+        expect(json_data['images'].size).to eq(1)
+        expect(json_data['images'].first.keys).to match_array(%w[id filename mime_type size url large_url thumbnail_url])
       end
     end
   end

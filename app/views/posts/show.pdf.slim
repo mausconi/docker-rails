@@ -7,9 +7,9 @@ p
     '
     = time_tag(@post.updated_at)
 
-- if @post.clips.present?
-  - @post.clips.each do |clip|
-    = image_tag clip.image_url(:thumbnail), \
+- if @post.images.present?
+  - @post.images.each do |image|
+    = image_tag image.variant("400x400"), \
                 class: 'img-thumbnail'
 
 == @post.content

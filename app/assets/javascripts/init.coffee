@@ -4,7 +4,6 @@ class @Init
 
     # Forms
     new FormValidator()
-    new Upload()
 
     # Lists
     new InfiniteScrolling()
