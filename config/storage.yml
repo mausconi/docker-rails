@@ -9,10 +9,10 @@ local:
 # Use rails credentials:edit to set the AWS secrets (as aws:access_key_id|secret_access_key)
 amazon:
   service: S3
-  access_key_id: <%= ENV.fetch('AWS_ACCESS_KEY_ID') %>
-  secret_access_key: <%= ENV.fetch('AWS_SECRET_ACCESS_KEY') %>
-  region: <%= ENV.fetch('AWS_REGION') %>
-  bucket: <%= ENV.fetch('AWS_BUCKET') %>
+  access_key_id: <%= ENV.fetch('AWS_ACCESS_KEY_ID', 'ABC123') %>
+  secret_access_key: <%= ENV.fetch('AWS_SECRET_ACCESS_KEY', 'topsecret') %>
+  region: <%= ENV.fetch('AWS_REGION', 'eu-central-1') %>
+  bucket: <%= ENV.fetch('AWS_BUCKET', 'docker-rails') %>
   endpoint: <%= ENV.fetch('AWS_ENDPOINT', 'https://s3.amazonaws.com') %>
   force_path_style: <%= ENV.fetch('AWS_FORCE_PATH_STYLE', false) %>
 
